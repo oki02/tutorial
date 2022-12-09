@@ -6,7 +6,8 @@ import 'package:tutorial/src/painter/painter.dart';
 
 class Tutorial {
   //FUNÇÃO QUE EXIBE O TUTORIAL
-  static showTutorial(BuildContext context, List<TutorialItem> children) async {
+  static showTutorial(BuildContext context, List<TutorialItem> children,
+      bool showSkipButton) async {
     int count = 0;
     var size = MediaQuery.of(context).size;
     OverlayState? overlayState = Overlay.of(context);
@@ -55,27 +56,46 @@ class Tutorial {
                           mainAxisAlignment: element.mainAxisAlignment,
                           children: [
                             ...element.children!,
-                            GestureDetector(
-                              child: element.widgetNext ??
-                                  Text(
-                                    "NEXT",
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                              onTap: () {
-                                entrys[count].remove();
-                                count++;
-                                if (count != entrys.length) {
-                                  overlayState?.insert(entrys[count]);
-                                }
-                                if (element.callback != null) {
-                                  element.callback!(entrys.length - count);
-                                }
-                              },
-                            ),
                           ],
                         ),
                       ),
-                    )
+                    ),
+                    Positioned(
+                      top: element.topNext,
+                      bottom: element.bottomNext,
+                      left: element.leftNext,
+                      right: element.rightNext,
+                      child: GestureDetector(
+                        child: element.widgetNext!,
+                        onTap: () {
+                          entrys[count].remove();
+                          count++;
+                          if (count != entrys.length) {
+                            overlayState?.insert(entrys[count]);
+                          }
+                          if (element.callback != null) {
+                            element.callback!(entrys.length - count);
+                          }
+                        },
+                      ),
+                    ),
+                    if (showSkipButton && element.skipButton != null)
+                      Positioned(
+                        top: element.topSkip,
+                        bottom: element.bottomSkip,
+                        left: element.leftSkip,
+                        right: element.rightSkip,
+                        child: GestureDetector(
+                          child: element.skipButton!,
+                          onTap: () {
+                            entrys[count].remove();
+                            count = entrys.length;
+                            if (element.callback != null) {
+                              element.callback!(0);
+                            }
+                          },
+                        ),
+                      ),
                   ],
                 ),
               ),

@@ -10,11 +10,20 @@ class TutorialItem {
   final double? bottom;
   final double? left;
   final double? right;
+  final double? topSkip;
+  final double? bottomSkip;
+  final double? leftSkip;
+  final double? rightSkip;
+  final double? topNext;
+  final double? bottomNext;
+  final double? leftNext;
+  final double? rightNext;
   final Widget? widgetNext;
   final CrossAxisAlignment crossAxisAlignment;
   final MainAxisAlignment mainAxisAlignment;
   final bool? touchScreen;
   final Function? callback;
+  final Widget? skipButton;
 
   TutorialItem({
     this.top,
@@ -29,5 +38,14 @@ class TutorialItem {
     this.widgetNext,
     this.touchScreen = false,
     this.callback,
+    this.skipButton,
+    this.bottomSkip,
+    this.leftSkip,
+    this.rightSkip,
+    this.topSkip,
+    this.bottomNext,
+    this.leftNext,
+    this.rightNext,
+    this.topNext,
   });
 }

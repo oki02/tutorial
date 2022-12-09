@@ -109,7 +109,7 @@ class _HomeState extends State<Home> {
 
     ///FUNÇÃO QUE EXIBE O TUTORIAL.
     Future.delayed(Duration(microseconds: 200)).then((value) {
-      Tutorial.showTutorial(context, itens);
+      Tutorial.showTutorial(context, itens, false);
     });
 
     super.initState();
