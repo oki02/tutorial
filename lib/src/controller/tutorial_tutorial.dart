@@ -25,6 +25,9 @@ class Tutorial {
                       if (count != entrys.length) {
                         overlayState?.insert(entrys[count]);
                       }
+                      if (element.callback != null) {
+                        element.callback!(entrys.length - count);
+                      }
                     }
                   : () {},
               child: Scaffold(
@@ -63,6 +66,9 @@ class Tutorial {
                                 count++;
                                 if (count != entrys.length) {
                                   overlayState?.insert(entrys[count]);
+                                }
+                                if (element.callback != null) {
+                                  element.callback!(entrys.length - count);
                                 }
                               },
                             ),

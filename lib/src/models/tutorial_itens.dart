@@ -14,6 +14,7 @@ class TutorialItem {
   final CrossAxisAlignment crossAxisAlignment;
   final MainAxisAlignment mainAxisAlignment;
   final bool? touchScreen;
+  final Function? callback;
 
   TutorialItem({
     this.top,
@@ -27,5 +28,6 @@ class TutorialItem {
     this.mainAxisAlignment = MainAxisAlignment.center,
     this.widgetNext,
     this.touchScreen = false,
+    this.callback,
   });
 }
